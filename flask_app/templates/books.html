@@ -10,7 +10,31 @@
 <body>
     <div class="container">
         <a href="/books/new" class="btn btn-info float-end mt-2">Add a New Book!</a>
-        <h1>Authors and Books</h1>
+        
+        <h1>Books</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Pages</th>
+                    <th scope="col">Language</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in all_books %}
+                <tr>
+                    <th scope="row">{{book.title}}</th>
+                    <td>{{book.pages}}</td>
+                    <td>{{book.language}}</td>
+                    <td>{{book.author.first_name}} {{book.author.last_name}}</td>
+                    <td>...</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
         <h2>Add Author</h2>
         <form action="/new_author" method="post">
             <label for="fname">First Name</label>

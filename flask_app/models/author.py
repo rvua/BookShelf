@@ -12,14 +12,19 @@ class Author:
     @classmethod
     def create_author(cls, data):
         query = "INSERT INTO authors (first_name, last_name, created_at, updated_at) VALUES (%(first_name)s, %(last_name)s, NOW(), NOW());"
+        
         results = connectToMySQL('book_authors').query_db(query, data)
+        
         return results 
     
     @classmethod
     def get_all_authors(cls):
         query = "SELECT * FROM authors;"
+        
         results = connectToMySQL('book_authors').query_db(query)
+        
         authors = []
+        
         for one_author in results:
             authors.append(cls(one_author))
         return authors
