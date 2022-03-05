@@ -29,7 +29,7 @@
                     <td>{{book.pages}}</td>
                     <td>{{book.language}}</td>
                     <td>{{book.author.first_name}} {{book.author.last_name}}</td>
-                    <td>...</td>
+                    <td><a href="/books/{{book.id}}">Show</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

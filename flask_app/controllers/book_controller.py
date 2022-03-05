@@ -31,3 +31,14 @@ def create_book():
      }
     Book.create_book(data) 
     return redirect("/books")
+
+#=========================
+# Show One Book Route 
+#=========================
+@app.route("/books/<int:book_id>")
+def show_book(book_id):
+    data = {
+        "book_id" : book_id 
+    }
+    book = Book.get_one_book(data)
+    return render_template("show_book.html", book=book)

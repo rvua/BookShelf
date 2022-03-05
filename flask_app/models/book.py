@@ -43,3 +43,23 @@ class Book:
             book.author = author.Author(author_data)
             books.append(book)
         return books
+    
+    @classmethod
+    def get_one_book(cls, data):
+        query = "SELECT * FROM books LEFT JOIN authors ON author_id = authors.id WHERE books.id = %(book_id)s;"
+        
+        results = connectToMySQL('book_authors').query_db(query, data)
+
+        book = cls(results[0])
+
+        author_data = {
+            "id" : results[0]['authors.id'],
+            "first_name" : results[0]['first_name'],
+            "last_name" : results[0]['last_name'],
+            "created_at" : results[0]['authors.created_at'],
+            "updated_at" : results[0]['authors.updated_at']
+        }
+
+        book.author = author.Author(author_data)
+
+        return book
