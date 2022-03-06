@@ -14,3 +14,14 @@ def new_author():
     }
     Author.create_author(data)
     return redirect('/books')
+
+#=========================
+# Show One Author Route
+#=========================
+@app.route("/author/<int:author_id>")
+def show_author(author_id):
+    data = {
+        "author_id": author_id
+    }
+    author = Author.get_one_author(data)
+    return render_template("show_author.html", author = author)

@@ -28,7 +28,7 @@
                     <th scope="row">{{book.title}}</th>
                     <td>{{book.pages}}</td>
                     <td>{{book.language}}</td>
-                    <td>{{book.author.first_name}} {{book.author.last_name}}</td>
+                    <td><a href="/author/{{book.author.id}}">{{book.author.first_name}} {{book.author.last_name}}</a></td>
                     <td><a href="/books/{{book.id}}">Show</a></td>
                 </tr>
                 {% endfor %}
