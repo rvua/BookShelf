@@ -63,3 +63,19 @@ class Book:
         book.author = author.Author(author_data)
 
         return book
+    
+    @classmethod
+    def update_book_info(cls, data):
+        query = "UPDATE books SET title = %(title)s, language = %(language)s, description = %(description)s, pages = %(pages)s, author_id = %(author_id)s, updated_at = NOW() WHERE id = %(book_id)s;"
+        
+        results = connectToMySQL('book_authors').query_db(query, data)
+
+        return 
+    
+    @classmethod
+    def delete_one_book(cls, data):
+        query = "DELETE FROM books WHERE id = %(book_id)s;"
+        
+        results = connectToMySQL('book_authors').query_db(query, data)
+
+        return 

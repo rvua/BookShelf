@@ -42,3 +42,39 @@ def show_book(book_id):
     }
     book = Book.get_one_book(data)
     return render_template("show_book.html", book=book)
+
+#=========================
+# Edit Book Route 
+#=========================
+@app.route("/books/<int:book_id>/edit")
+def edit_book(book_id):
+    authors = Author.get_all_authors()
+    data = {
+        "book_id" : book_id
+    }
+    book = Book.get_one_book(data)
+    return render_template("edit_book.html", authors=authors, book=book)
+
+@app.route("/update_book/<int:book_id>", methods=["POST"])
+def update_book(book_id):
+    data = {
+        "book_id": book_id,
+        "title" : request.form['title'],
+        "pages" : request.form['pages'],
+        "language" : request.form['language'],
+        "author_id" : request.form['author_id'],
+        "description" : request.form['description'],
+    }
+    Book.update_book_info(data)
+    return redirect(f"/books/{book_id}")
+
+#=========================
+# Delete Book Route 
+#=========================
+@app.route("/books/<int:book_id>/delete")
+def delete_book(book_id):
+    data = {
+        "book_id" : book_id
+    }
+    Book.delete_one_book(data)
+    return redirect("/books") 
